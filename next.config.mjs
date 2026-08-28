@@ -1,6 +1,5 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   // Hostinger's standard web hosting serves static files only (no Node.js
   // server process for a custom app) — this outputs a fully static site to
   // `out/` on `next build`, deployable to any static host. Every route on
