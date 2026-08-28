@@ -64,7 +64,7 @@ export function Hero() {
               <span className="text-brand-blue" aria-hidden="true">
                 ✦
               </span>
-              <span dir="rtl" className="font-arabic" lang="ar">
+              <span dir="rtl" className="font-amiri" lang="ar">
                 {ARABIC_DUA}
               </span>
               <span className="text-brand-blue" aria-hidden="true">
