@@ -8,9 +8,9 @@ import { cn } from "@/lib/cn";
 
 const NAV_LINKS = [
   { label: "About", href: "#about" },
+  { label: "Gallery", href: "#gallery" },
   { label: "Programmes", href: "#programmes" },
   { label: "Facilities", href: "#facilities" },
-  { label: "Gallery", href: "#gallery" },
   { label: "Events", href: "#events" },
   { label: "Achievements", href: "#achievements" },
   { label: "Contact", href: "#contact" },
