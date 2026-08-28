@@ -1,26 +1,165 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------------------------------------------------------------------- */
+/* Design tokens — palette is strict, sourced from the project brief.      */
+/* ---------------------------------------------------------------------- */
+@theme {
+  --color-brand-blue: #0e86d4; /* deep sky blue — primary headings, nav, dark bg */
+  --color-brand-sky: #1cb6f9; /* bright sky blue — buttons, link accents */
+  --color-brand-green: #029235; /* wreath green — secondary CTAs, icons, dividers */
+  --color-brand-green-dark: #026b27; /* hover state for green elements */
+  --color-bg: #f7f9fb; /* near-white — base page background */
+  --color-bg-alt: #eef3f7; /* soft off-white — alternating section background */
+  --color-gold: #f5a623; /* warm gold — sparingly, achievements/donation accents */
+  --color-ink: #111318; /* body text */
+  --color-ink-soft: #3d4148; /* secondary / muted text */
+
+  --font-heading: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: "Noto Naskh Arabic", "Traditional Arabic", serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ---------------------------------------------------------------------- */
+/* Base                                                                    */
+/* ---------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+}
+
+/* Respect reduced-motion preferences as a CSS-level safety net.
+   GSAP ScrollTrigger setup is skipped entirely in JS when this is set;
+   this covers the lightweight CSS hover/transition micro-interactions too. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Focus visibility                                                       */
+/* ---------------------------------------------------------------------- */
+:focus-visible {
+  outline: 2px solid var(--color-brand-sky);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Nav link underline — CSS-only hover/active affordance (not GSAP)       */
+/* ---------------------------------------------------------------------- */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 2px;
+  width: 100%;
+  background: var(--color-brand-sky);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 250ms ease;
+}
+
+.nav-link:hover::after,
+.nav-link[data-active="true"]::after {
+  transform: scaleX(1);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Faint background grid pattern used behind the hero                     */
+/* ---------------------------------------------------------------------- */
+.bg-grid-faint {
+  background-image:
+    linear-gradient(to right, rgba(14, 134, 212, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(14, 134, 212, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Scroll-reveal defaults — GSAP sets inline styles once it takes over;   */
+/* these keep content visible if JS never runs (no-JS / reduced-motion).  */
+/* ---------------------------------------------------------------------- */
+[data-reveal],
+[data-reveal-item] {
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Campus gallery marquee rows — pure CSS, GPU-accelerated infinite       */
+/* scroll (no GSAP/JS driving the loop itself; GSAP only handles the      */
+/* section's one-time scroll-reveal entrance, on a separate element).     */
+/* ---------------------------------------------------------------------- */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Pause only the row under the cursor — gated to real pointer devices so
+   a tap on a touchscreen never "sticks" a row paused (touch has no
+   persistent :hover state to release it from). */
+@media (hover: hover) and (pointer: fine) {
+  .marquee-row:hover .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+    transform: translateX(0) !important;
+  }
+
+  /* Each row renders its image set twice back-to-back for the seamless
+     loop; with the loop switched off, hide the second (duplicate) copy
+     so a static row reads as one normal set of photos, not a repeat. */
+  .marquee-track > :last-child {
+    display: none;
+  }
 }
