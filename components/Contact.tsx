@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  useEffect,
   useRef,
   useState,
   type FormEvent,
@@ -8,6 +9,7 @@ import {
 } from "react";
 
 import {
+  Check,
   ChevronDown,
   Landmark,
   Lock,
@@ -261,6 +263,67 @@ export function Contact() {
 
   const [honeypot, setHoneypot] =
     useState("");
+
+  /* =======================================================
+     SUBJECT DROPDOWN (custom-styled listbox)
+
+     A native <select> can't be restyled to match the theme —
+     its open panel is rendered by the OS/browser, not CSS.
+     This is a lightweight combobox instead: a themed trigger
+     button plus a themed option panel, closing on outside
+     click, Escape, or selection.
+  ======================================================= */
+
+  const [subjectOpen, setSubjectOpen] =
+    useState(false);
+
+  const subjectRef =
+    useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!subjectOpen) return;
+
+    const handlePointerDown = (
+      event: MouseEvent
+    ) => {
+      if (
+        subjectRef.current &&
+        !subjectRef.current.contains(
+          event.target as Node
+        )
+      ) {
+        setSubjectOpen(false);
+      }
+    };
+
+    const handleKeyDown = (
+      event: KeyboardEvent
+    ) => {
+      if (event.key === "Escape") {
+        setSubjectOpen(false);
+      }
+    };
+
+    document.addEventListener(
+      "mousedown",
+      handlePointerDown
+    );
+    document.addEventListener(
+      "keydown",
+      handleKeyDown
+    );
+
+    return () => {
+      document.removeEventListener(
+        "mousedown",
+        handlePointerDown
+      );
+      document.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+    };
+  }, [subjectOpen]);
 
   /* =======================================================
      UPDATE FIELD
@@ -950,65 +1013,121 @@ export function Contact() {
 
               {/* SUBJECT */}
 
-              <Field
-                id="subject"
-                label="Subject"
-                icon={
-                  MessageSquare
-                }
-                error={
-                  errors.subject
-                }
-              >
-                <select
-                  id="subject"
-                  name="subject"
-                  value={
-                    values.subject
-                  }
-                  onChange={(e) =>
-                    updateField(
-                      "subject",
-                      e.target.value
-                    )
-                  }
-                  aria-invalid={
-                    Boolean(
-                      errors.subject
-                    )
-                  }
-                  className={cn(
-                    inputClasses,
-                    "cursor-pointer appearance-none bg-none pr-10",
-                    !values.subject &&
-                      "text-ink-soft/60"
-                  )}
+              <div ref={subjectRef}>
+                <label
+                  htmlFor="subject"
+                  className="sr-only"
                 >
-                  <option
-                    value=""
-                    disabled
+                  Subject
+                </label>
+
+                <div className="relative flex items-center">
+                  <MessageSquare
+                    className="pointer-events-none absolute left-4 z-10 h-5 w-5 text-ink-soft/60"
+                    aria-hidden="true"
+                  />
+
+                  <button
+                    id="subject"
+                    type="button"
+                    aria-haspopup="listbox"
+                    aria-expanded={
+                      subjectOpen
+                    }
+                    aria-describedby={
+                      errors.subject
+                        ? "subject-error"
+                        : undefined
+                    }
+                    onClick={() =>
+                      setSubjectOpen(
+                        (open) => !open
+                      )
+                    }
+                    className={cn(
+                      inputClasses,
+                      "flex items-center text-left",
+                      !values.subject &&
+                        "text-ink-soft/60"
+                    )}
                   >
-                    Subject
-                  </option>
+                    {values.subject ||
+                      "Subject"}
+                  </button>
 
-                  {SUBJECT_OPTIONS.map(
-                    (option) => (
-                      <option
-                        key={option}
-                        value={option}
-                        className="text-ink"
-                      >
-                        {option}
-                      </option>
-                    )
+                  <ChevronDown
+                    className={cn(
+                      "pointer-events-none absolute right-4 h-4 w-4 text-ink-soft/60 transition-transform duration-200",
+                      subjectOpen &&
+                        "rotate-180"
+                    )}
+                    aria-hidden="true"
+                  />
+
+                  {subjectOpen && (
+                    <ul
+                      role="listbox"
+                      aria-label="Subject"
+                      className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-20 overflow-hidden rounded-2xl bg-white p-1.5 text-ink shadow-xl shadow-black/15 ring-1 ring-black/5"
+                    >
+                      {SUBJECT_OPTIONS.map(
+                        (option) => {
+                          const selected =
+                            values.subject ===
+                            option;
+
+                          return (
+                            <li
+                              key={option}
+                              role="presentation"
+                            >
+                              <button
+                                type="button"
+                                role="option"
+                                aria-selected={
+                                  selected
+                                }
+                                onClick={() => {
+                                  updateField(
+                                    "subject",
+                                    option
+                                  );
+                                  setSubjectOpen(
+                                    false
+                                  );
+                                }}
+                                className={cn(
+                                  "flex w-full items-center justify-between gap-2 rounded-xl px-3.5 py-2.5 text-left text-sm transition-colors duration-150",
+                                  selected
+                                    ? "bg-brand-blue/10 font-semibold text-brand-blue"
+                                    : "text-ink hover:bg-bg-alt"
+                                )}
+                              >
+                                {option}
+                                {selected && (
+                                  <Check
+                                    className="h-4 w-4 shrink-0 text-brand-blue"
+                                    aria-hidden="true"
+                                  />
+                                )}
+                              </button>
+                            </li>
+                          );
+                        }
+                      )}
+                    </ul>
                   )}
-                </select>
+                </div>
 
-                <ChevronDown
-                  className="pointer-events-none absolute right-4 h-4 w-4 text-ink-soft/60"
-                  aria-hidden="true"
-                />
-              </Field>
+                {errors.subject && (
+                  <p
+                    id="subject-error"
+                    className="mt-1 text-sm text-amber-200"
+                  >
+                    {errors.subject}
+                  </p>
+                )}
+              </div>
 
               {/* MESSAGE */}
 
