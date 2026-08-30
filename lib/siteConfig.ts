@@ -5,11 +5,11 @@
  */
 export const CONTACT_INFO = {
   addressLines: ["Zia ul Quran Sulemania", "St No. 20, Azam Basti, Karachi"],
-  phoneDisplay: "+92 303 2002263",
-  phoneHref: "tel:+923032002263",
+  phoneDisplay: "+92 314 9224812",
+  phoneHref: "tel:+923149224812",
   email: "contact@ziaulquransulemania.com",
   /** Digits only, international format, for the WhatsApp deep link. */
-  whatsappDigits: "923032002263",
+  whatsappDigits: "923149224812",
 } as const;
 
 /**

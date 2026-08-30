@@ -8,6 +8,7 @@ import {
 } from "react";
 
 import {
+  ChevronDown,
   Landmark,
   Lock,
   Mail,
@@ -735,7 +736,7 @@ export function Contact() {
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-blue to-brand-sky px-6 text-sm font-semibold text-white shadow-sm transition-all duration-250 hover:scale-[1.02]"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-brand-green px-6 text-sm font-semibold text-white shadow-sm transition-all duration-250 hover:scale-[1.02] hover:bg-brand-green-dark"
               >
                 <RiWhatsappFill
                   className="h-5 w-5"
@@ -978,7 +979,7 @@ export function Contact() {
                   }
                   className={cn(
                     inputClasses,
-                    "appearance-none",
+                    "cursor-pointer appearance-none bg-none pr-10",
                     !values.subject &&
                       "text-ink-soft/60"
                   )}
@@ -1002,6 +1003,11 @@ export function Contact() {
                     )
                   )}
                 </select>
+
+                <ChevronDown
+                  className="pointer-events-none absolute right-4 h-4 w-4 text-ink-soft/60"
+                  aria-hidden="true"
+                />
               </Field>
 
               {/* MESSAGE */}

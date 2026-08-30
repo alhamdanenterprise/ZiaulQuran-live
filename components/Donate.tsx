@@ -9,8 +9,6 @@ import { useScrollReveal } from "@/lib/scrollAnimations";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { cn } from "@/lib/cn";
 
-const TABS = ["Zakat", "Sadaqah", "General Fund"] as const;
-
 /**
  * Bank Transfer and JazzCash both use the madarsa's real account details,
  * provided by the client. Easypaisa isn't listed — no real account was
@@ -99,7 +97,6 @@ function PaymentMethodRow({
 export function Donate() {
   const containerRef = useRef<HTMLDivElement>(null);
   useScrollReveal(containerRef);
-  const [activeTab, setActiveTab] = useState<(typeof TABS)[number]>("Zakat");
 
   return (
     <section id="donate" ref={containerRef} className="bg-bg py-20 sm:py-28">
@@ -113,31 +110,6 @@ export function Donate() {
           description="Every donation — Cash, Zakat, Sadaqah, or Fitrana — helps us shelter and educate our students, including orphans and children affected by hardship."
           className="mb-10"
         />
-
-        <div
-          data-reveal
-          className="mb-10 flex flex-wrap justify-center gap-3"
-          role="tablist"
-          aria-label="Donation type"
-        >
-          {TABS.map((tab) => (
-            <button
-              key={tab}
-              type="button"
-              role="tab"
-              aria-selected={activeTab === tab}
-              onClick={() => setActiveTab(tab)}
-              className={cn(
-                "min-h-11 rounded-full border-2 px-6 text-sm font-semibold transition-all duration-250 hover:scale-[1.02]",
-                activeTab === tab
-                  ? "border-brand-blue bg-brand-blue text-white"
-                  : "border-brand-blue/30 bg-white text-brand-blue"
-              )}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
 
         <div
           data-reveal-group
