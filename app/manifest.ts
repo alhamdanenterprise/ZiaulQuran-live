@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
-// Required for `output: "export"` — this route has no request-time data,
-// so it's safe to mark fully static.
+// This route has no request-time data, so it's safe (and faster) to
+// prerender it once at build time instead of computing it per request.
 export const dynamic = "force-static";
 
 export default function manifest(): MetadataRoute.Manifest {

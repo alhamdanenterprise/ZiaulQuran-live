@@ -58,37 +58,41 @@ replaced before the site goes live:
 
 ## Deploying
 
-This site builds as a fully static export (`output: "export"` in
-`next.config.ts` — every route here is static, so nothing is lost). That
-makes it deployable to any static host.
+This site runs as a normal server-rendered Next.js app (no
+`output: "export"`) — every route here happens to be static content, but
+it's served by a real Next.js runtime rather than a static export.
 
 ### Hostinger (primary target — ziaulquransulemania.com)
 
-`.github/workflows/deploy.yml` builds the site and FTP-deploys the `out/`
-folder to Hostinger on every push to `main`. One-time setup:
+Hostinger's "Web App" hosting for Next.js is a genuine Node.js SSR/ISR
+runtime behind their own CDN, connected directly to the
+`alhamdanenterprise/ZiaulQuran-live` GitHub repo (hPanel → Websites →
+ziaulquransulemania.com → **Deployments**). Every push to `main` triggers
+an automatic build (`npm install` → `npm run build`, output directory
+`.next`) and deploy — there is no manual FTP step and no GitHub Action
+involved.
 
-1. In Hostinger's hPanel, open **Files → FTP Accounts** and note the FTP
-   hostname, username, and password (or create a dedicated FTP account).
-2. In the GitHub repo, go to **Settings → Secrets and variables →
-   Actions** and add these repository secrets:
-   - `HOSTINGER_FTP_SERVER`, `HOSTINGER_FTP_USERNAME`, `HOSTINGER_FTP_PASSWORD`
-   - `NEXT_PUBLIC_EMAILJS_SERVICE_ID`, `NEXT_PUBLIC_EMAILJS_NOTIFY_TEMPLATE_ID`,
-     `NEXT_PUBLIC_EMAILJS_AUTOREPLY_TEMPLATE_ID`, `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`
-     (same values as your local `.env.local`)
-3. Point the domain at Hostinger (already the case if it was bought
-   through Hostinger) and issue the free SSL certificate for it in
+One-time setup already done, for reference:
+
+1. Domain pointed at Hostinger and the free SSL certificate issued in
    hPanel → **SSL**.
-4. Push to `main` — the Action builds and uploads `out/` to
-   `public_html/`, and the site goes live at the domain.
+2. `NEXT_PUBLIC_EMAILJS_SERVICE_ID`, `NEXT_PUBLIC_EMAILJS_NOTIFY_TEMPLATE_ID`,
+   `NEXT_PUBLIC_EMAILJS_AUTOREPLY_TEMPLATE_ID`, `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`
+   set as environment variables in hPanel → **Environment variables**
+   (same values as your local `.env.local`) — `NEXT_PUBLIC_*` values are
+   baked in at build time, so they must be set there, not just locally.
+3. GitHub repo connected under hPanel → **Deployments** → *Connected with
+   GitHub*.
 
-Security headers (CSP, etc.) live in `public/.htaccess` instead of
-`next.config.ts`'s `headers()`, since there's no Next.js server left to
-apply them at request time under a static export — Apache (which
-Hostinger runs) reads `.htaccess` directly.
+Security headers (CSP, etc.) are set via `next.config.mjs`'s `headers()`
+— this is a real Next.js server, so that mechanism actually applies at
+request time. (An earlier version of this project used a static export
+with a `public/.htaccess` file for headers instead; that file is gone
+now — it turned out Apache was never in this hosting's request path to
+begin with, so those headers were silently not being applied.)
 
 ### Alternative: Vercel
 
-Also deploys cleanly to [Vercel](https://vercel.com/new) if needed —
-remove `output: "export"`/`images.unoptimized` from `next.config.ts` first
-to get Vercel's on-demand image optimization back, and set the four
-`NEXT_PUBLIC_EMAILJS_*` variables in the project's environment variables.
+Also deploys cleanly to [Vercel](https://vercel.com/new) as-is — set the
+four `NEXT_PUBLIC_EMAILJS_*` variables in the project's environment
+variables and it just works, no config changes needed.
