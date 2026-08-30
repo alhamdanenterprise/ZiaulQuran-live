@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ChunkErrorRecovery } from "@/components/ChunkErrorRecovery";
 
 export const metadata: Metadata = {
   title: "Zia-ul-Quran Sulemania Lilbanat",
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         className="min-h-full flex flex-col bg-bg text-ink antialiased"
         suppressHydrationWarning
       >
+        <ChunkErrorRecovery />
         {children}
       </body>
     </html>
