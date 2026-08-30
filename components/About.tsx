@@ -31,13 +31,13 @@ const PROFILES = [
   {
     photo: "/founder.webp",
     label: "Founder",
-    name: "Peer Syed Abul Hassan Shah Manzoor Hamdani",
+    name: "Syed Abul Hassan Shah Manzoor Hamdani",
     lineOne: "Founder General Secretary, Anjuman Qamar-ul-Islam Sulemania",
   },
   {
     photo: "/ceo.webp",
     label: "Current CEO",
-    name: "Syed Ameena Hamdani",
+    name: "Syeda Ameena Hamdani",
     lineOne: "Leader. Educator. Guide.",
     lineTwo: "Continuing the Legacy",
   },
