@@ -5,6 +5,7 @@
 /* ---------------------------------------------------------------------- */
 @theme {
   --color-brand-blue: #0e86d4; /* deep sky blue — primary headings, nav, dark bg */
+  --color-brand-blue-dark: #0b6ba8; /* darker blue for small text on light backgrounds — brand-blue only clears WCAG AA contrast at large-text sizes */
   --color-brand-sky: #1cb6f9; /* bright sky blue — buttons, link accents */
   --color-brand-green: #029235; /* wreath green — secondary CTAs, icons, dividers */
   --color-brand-green-dark: #026b27; /* hover state for green elements */

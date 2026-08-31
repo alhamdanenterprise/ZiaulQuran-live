@@ -82,6 +82,26 @@ const nextConfig = {
           },
         ],
       },
+      // Static assets served from public/ (gallery photos, logo,
+      // founder/CEO portraits, favicons) aren't content-hashed like
+      // _next/static/*, so they were falling through to the max-age=0
+      // rule above and getting re-fetched on every visit — a real
+      // PageSpeed "efficient cache lifetimes" flag. Every past image
+      // swap in this project has used a new filename rather than
+      // overwriting one in place, so a long cache is safe in practice;
+      // 30 days (rather than _next/static's full year) bounds the
+      // downside if a filename is ever reused. Listed after the
+      // max-age=0 rule so it wins for these paths (headers() docs:
+      // "the last header key will override the first").
+      {
+        source: "/:path(.*\\.(?:webp|png|jpe?g|gif|svg|ico|avif|woff2?|ttf|otf))",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=2592000, must-revalidate",
+          },
+        ],
+      },
     ];
   },
 };

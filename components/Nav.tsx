@@ -79,10 +79,10 @@ export function Nav() {
             className="h-11 w-11 rounded-full object-contain"
           />
           <span className="flex flex-col leading-tight">
-            <span className="font-heading text-lg font-semibold text-brand-blue sm:text-xl">
+            <span className="font-heading text-lg font-semibold text-brand-blue-dark sm:text-xl">
               Zia-ul-Quran
             </span>
-            <span className="font-heading text-xs font-medium text-brand-blue/80 sm:text-sm">
+            <span className="font-heading text-xs font-medium text-brand-blue-dark sm:text-sm">
               Sulemania Lilbanat
             </span>
           </span>
