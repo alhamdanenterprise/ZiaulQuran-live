@@ -54,6 +54,34 @@ const nextConfig = {
           },
         ],
       },
+      // Next.js's documented default for a fully static page is
+      // `Cache-Control: s-maxage=31536000` (one year) — by design, since
+      // its caching model assumes every past deployment's hashed
+      // `_next/static/*` files stay available forever (Vercel's model).
+      // Hostinger's deploys instead delete the previous build's static
+      // files when a new one goes live, so a CDN- or browser-cached HTML
+      // page from before a deploy can end up referencing chunk files
+      // that no longer exist — a "ChunkLoadError" / blank page for
+      // whoever has that page cached (ChunkErrorRecovery.tsx recovers
+      // from this after the fact; this closes most of the window before
+      // it happens). Forcing revalidation on every request for the
+      // *document* itself (not the immutable hashed assets, which Next
+      // protects from being overridden regardless — see the headers()
+      // docs) means a stale copy is never reused without first checking
+      // the origin for a newer one.
+      {
+        // Excludes _next/static/* (content-hashed, safe to cache
+        // forever — confirmed by testing that a blanket "/:path*" here
+        // overrides even those, which the headers() docs claim isn't
+        // possible but empirically was for chunk files on this version).
+        source: "/:path((?!_next/static).*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=0, must-revalidate",
+          },
+        ],
+      },
     ];
   },
 };
