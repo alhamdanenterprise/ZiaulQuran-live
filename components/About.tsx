@@ -32,11 +32,11 @@ const PROFILES = [
     photo: "/founder.webp",
     label: "Founder",
     name: "Syed Abul Hassan Shah Manzoor Hamdani",
-    lineOne: "Founder General Secretary, Anjuman Qamar-ul-Islam Sulemania",
+    lineOne: "Founder General Secretary, Zia-ul-Quran Sulemania Lilbanat",
   },
   {
     photo: "/ceo.webp",
-    label: "Current CEO",
+    label: "Executive Director",
     name: "Syeda Ameena Hamdani",
     lineOne: "Leader. Educator. Guide.",
     lineTwo: "Continuing the Legacy",
@@ -78,8 +78,11 @@ export function About() {
                   <span className="font-semibold text-brand-green">
                     Quran and Sunnah
                   </span>
-                  , while instilling the timeless values of the Sunni-Sufi
-                  tradition.
+                  . Zia-ul-Quran Sulemania Lilbanat is an independent
+                  educational institution and is not affiliated with any
+                  political or religious organization. The institution is
+                  committed to education, character development, and service
+                  to humanity.
                 </>
               }
             />
@@ -152,14 +155,14 @@ export function About() {
                 aria-hidden="true"
               />
               <p className="text-sm leading-relaxed text-ink-soft sm:text-base">
-                Our mission is to spread Islam by making its teachings
-                accessible to orphans and those in need, to{" "}
+                Our mission is to provide quality education and character
+                development rooted in{" "}
                 <span className="font-semibold text-ink">
-                  instil the Sunnah and Hadith of the Holy Prophet ﷺ as a way
-                  of life
+                  Quranic and Islamic values
                 </span>
-                , and to provide shelter and education to children affected
-                by hardship and orphans without guardians.
+                , to make education and shelter accessible to orphans and
+                those in need, and to serve humanity by nurturing confident,
+                principled, and compassionate individuals.
               </p>
             </div>
           </div>

@@ -102,7 +102,7 @@ export function Donate() {
     <section id="donate" ref={containerRef} className="bg-bg py-20 sm:py-28">
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <SectionHeading
-          eyebrow="Support the Madarsa"
+          eyebrow="Contribute to Our Mission"
           eyebrowIcon={HandCoins}
           align="center"
           divider={false}

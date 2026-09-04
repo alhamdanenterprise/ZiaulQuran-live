@@ -6,7 +6,7 @@ import { DeferredStylesheet } from "@/components/DeferredStylesheet";
 export const metadata: Metadata = {
   title: "Zia-ul-Quran Sulemania Lilbanat",
   description:
-    "A Sunni-Sufi girls' madarsa in Azam Basti, Karachi, established 1979 — dedicated to nurturing faith, imparting authentic Islamic knowledge, and building character through education rooted in the Quran and Sunnah.",
+    "An independent Islamic educational institution in Azam Basti, Karachi, established 1979 — dedicated to education, character development, and service to humanity, rooted in the Quran and Sunnah.",
 };
 
 const GOOGLE_FONTS_HREF =

@@ -1,8 +1,9 @@
 # Zia-ul-Quran Sulemania Lilbanat
 
-Single-page marketing site for Zia-ul-Quran Sulemania Lilbanat, a Sunni-Sufi
-girls' madarsa in Azam Basti, Karachi, established 1979. Built with Next.js
-(App Router), Tailwind CSS v4, and GSAP ScrollTrigger.
+Single-page marketing site for Zia-ul-Quran Sulemania Lilbanat, an
+independent Islamic educational institution for girls in Azam Basti,
+Karachi, established 1979. Built with Next.js (App Router), Tailwind CSS
+v4, and GSAP ScrollTrigger.
 
 ## Getting started
 
@@ -43,7 +44,7 @@ replaced before the site goes live:
    icons in the Footer). Facebook and Instagram are live; **TikTok is still
    a ⚠️ placeholder** (`href: "#"`) pending the client's link.
 
-5. **Founder / CEO photos & names — done.** Both cards use the client's
+5. **Founder / Executive Director photos & names — done.** Both cards use the client's
    real photos (`public/founder.webp`, `public/ceo.webp`) and real names
    (Peer Syed Abul Hasan Shah Manzoor Hamdani; Syed Ameena Hamdani).
 

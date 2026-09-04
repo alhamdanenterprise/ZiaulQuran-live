@@ -9,7 +9,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Zia-ul-Quran Sulemania Lilbanat",
     short_name: "Zia-ul-Quran",
     description:
-      "A Sunni-Sufi girls' madarsa in Azam Basti, Karachi, established 1979.",
+      "An independent Islamic educational institution in Azam Basti, Karachi, established 1979.",
     start_url: "/",
     display: "standalone",
     background_color: "#f7f9fb",

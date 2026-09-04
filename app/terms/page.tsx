@@ -66,8 +66,8 @@ export default function TermsPage() {
       <LegalSection title="4. Intellectual Property">
         <p>
           The text, logo, emblem, photographs, and other content on this
-          website belong to Zia-ul-Quran Sulemania Lilbanat and Anjuman
-          Qamar-ul-Islam Sulemania, or are used with permission. You may
+          website belong to Zia-ul-Quran Sulemania Lilbanat, or are used
+          with permission. You may
           view and share pages of this site for personal, non-commercial
           purposes, but may not reproduce, redistribute, or modify our
           content for commercial use without our written permission.

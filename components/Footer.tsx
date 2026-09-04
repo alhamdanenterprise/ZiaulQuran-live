@@ -15,10 +15,12 @@ const QUICK_LINKS = [
 ];
 
 const PROGRAMME_LINKS = [
-  "Nursery Onward",
-  "Matric & Intermediate",
+  "Hifz & Tajweed",
   "Dars-e-Nizami",
-  "Postgraduate Studies",
+  "Arabic Studies",
+  "Tafsir & Fiqh",
+  "English-Medium School",
+  "Modern Education",
 ];
 
 const SOCIALS = [
@@ -55,9 +57,9 @@ export function Footer() {
               Deen · Taleem · Tarbiyat · Khidmat
             </p>
             <p className="max-w-xs text-sm leading-relaxed text-ink-soft">
-              A Sunni-Sufi girls&apos; madarsa in Azam Basti, Karachi,
-              established in 1979, dedicated to Islamic education, character
-              building and the service of Deen.
+              An independent Islamic educational institution in Azam Basti,
+              Karachi, established in 1979, dedicated to education,
+              character development, and service to humanity.
             </p>
           </div>
 

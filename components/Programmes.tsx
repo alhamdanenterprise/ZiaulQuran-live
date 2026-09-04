@@ -1,7 +1,14 @@
 "use client";
 
 import { useRef } from "react";
-import { BookOpen, GraduationCap, Layers, ScrollText } from "lucide-react";
+import {
+  BookOpen,
+  GraduationCap,
+  Languages,
+  Scale,
+  School,
+  ScrollText,
+} from "lucide-react";
 import type { ComponentType } from "react";
 import type { LucideProps } from "lucide-react";
 import { useScrollReveal } from "@/lib/scrollAnimations";
@@ -15,27 +22,39 @@ const PROGRAMMES: {
 }[] = [
   {
     icon: BookOpen,
-    title: "Nursery Onward",
+    title: "Hifz & Tajweed",
     description:
-      "Foundational academic education in a nurturing Islamic environment that develops knowledge, character, confidence, and strong moral values.",
-  },
-  {
-    icon: GraduationCap,
-    title: "Matric & Intermediate",
-    description:
-      "A balanced modern curriculum combined with Islamic values, preparing students for higher education and future opportunities.",
+      "Quranic education focused on Hifz, Nazra, correct recitation and Tajweed.",
   },
   {
     icon: ScrollText,
-    title: "Dars-e-Nizami / Alimah Programme",
+    title: "Dars-e-Nizami",
     description:
-      "Comprehensive Islamic scholarship covering Quran, Hadith, Fiqh, Arabic, and other essential Islamic sciences.",
+      "Traditional Islamic studies covering essential religious sciences.",
   },
   {
-    icon: Layers,
-    title: "Quranic & Skills Education",
+    icon: Languages,
+    title: "Arabic Studies",
     description:
-      "Nazra, Hifz, Tajweed, Qirat, Arabic and English language learning, computer education, stitching, and practical skills development.",
+      "Arabic language and literature including Adab-e-Arabi and Fazil Arabi.",
+  },
+  {
+    icon: Scale,
+    title: "Tafsir & Fiqh",
+    description:
+      "Study of Quran translation, Tafsir and Islamic jurisprudence.",
+  },
+  {
+    icon: School,
+    title: "English-Medium School",
+    description:
+      "Quality English-medium education alongside Islamic learning.",
+  },
+  {
+    icon: GraduationCap,
+    title: "Modern Education",
+    description:
+      "Contemporary education from Matric and Intermediate through higher academic levels.",
   },
 ];
 

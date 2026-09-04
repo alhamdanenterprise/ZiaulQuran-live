@@ -94,10 +94,9 @@ export function Hero() {
             data-hero-item
             className="max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg"
           >
-            A long-established Sunni-Sufi girls&apos; madarsa in Karachi,
-            dedicated to nurturing faith, imparting authentic Islamic
-            knowledge, and building character through Islamic education
-            rooted in the Quran and Sunnah.
+            An independent Islamic educational institution for girls in
+            Karachi, dedicated to education, character development, and
+            service to humanity, rooted in the Quran and Sunnah.
           </p>
 
           <div data-hero-item className="flex flex-wrap gap-4">
@@ -112,7 +111,7 @@ export function Hero() {
               href="#donate"
               className="inline-flex items-center gap-2 rounded-full border-2 border-brand-green px-6 py-3.5 text-sm font-semibold text-brand-green transition-all duration-250 hover:scale-[1.02] hover:bg-brand-green hover:text-white"
             >
-              Support the Madarsa
+              Contribute to Our Mission
               <Coins className="h-4 w-4" aria-hidden="true" />
             </a>
           </div>

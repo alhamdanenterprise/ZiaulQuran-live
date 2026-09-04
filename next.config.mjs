@@ -83,7 +83,7 @@ const nextConfig = {
         ],
       },
       // Static assets served from public/ (gallery photos, logo,
-      // founder/CEO portraits, favicons) aren't content-hashed like
+      // leadership portraits, favicons) aren't content-hashed like
       // _next/static/*, so they were falling through to the max-age=0
       // rule above and getting re-fetched on every visit — a real
       // PageSpeed "efficient cache lifetimes" flag. Every past image

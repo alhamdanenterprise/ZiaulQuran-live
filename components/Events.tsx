@@ -6,6 +6,8 @@ import {
   Medal,
   MessagesSquare,
   Mic2,
+  MicVocal,
+  Palette,
   PartyPopper,
 } from "lucide-react";
 import type { ComponentType } from "react";
@@ -21,27 +23,39 @@ const EVENTS: {
 }[] = [
   {
     icon: Mic2,
-    title: "Mehfil-e-Milad",
+    title: "Milad & Seerat",
     description:
-      "A blessed gathering featuring Quran recitation, naat, Islamic reminders, speeches, and expressions of love for the Holy Prophet ﷺ.",
+      "Religious gatherings focused on the life and teachings of Prophet Muhammad ﷺ.",
+  },
+  {
+    icon: MicVocal,
+    title: "Qirat & Naat",
+    description:
+      "Competitions encouraging Quran recitation, Naat and student confidence.",
   },
   {
     icon: MessagesSquare,
-    title: "Qirat & Debate Competition",
+    title: "Speech & Debate",
     description:
-      "Encouraging Quran recitation, Islamic knowledge, public speaking, confidence, and healthy academic competition among students.",
+      "Activities developing communication, knowledge and presentation skills.",
   },
   {
     icon: Medal,
-    title: "Annual Sports & Award Ceremony",
+    title: "Sports & Awards",
     description:
-      "Celebrating student participation, sportsmanship, academic achievements, Quranic progress, good character, and outstanding performance.",
+      "Annual sports activities and award ceremonies recognising student achievements.",
+  },
+  {
+    icon: Palette,
+    title: "Creative Skills",
+    description:
+      "Art, designing, sewing and other educational skill-development activities.",
   },
   {
     icon: CalendarHeart,
     title: "Islamic & National Events",
     description:
-      "Special programmes for Ramadan, Shab-e-Barat, Hifz completion, 14 August, children's activities, and other important institutional occasions.",
+      "Educational programmes observing important Islamic and national occasions.",
   },
 ];
 
